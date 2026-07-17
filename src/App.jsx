@@ -5,6 +5,7 @@ import MainLayout from './layouts/MainLayout'
 import Explore from './pages/Explore'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Results from './pages/Results'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/explore' element={<Explore/>}/>
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Register/>} />
+      <Route path='/results' element={<Results/>}/>
       </Route>
     </Routes>
 
