@@ -4,11 +4,14 @@ import { addTripDetails } from '../redux/slices/tripSlice'
 import { useNavigate } from 'react-router-dom'
 
 const TripForm = ({setOpenModal}) => {
-  const[tripData,setTripData]=useState({destination:'',days:'',travellers:'',travelStyle:'',interests:[]})
   const[step,setStep]=useState(1)
+
+  const[tripData,setTripData]=useState({destination:'',days:'',travellers:'',travelStyle:'',interests:[]})
+  
+  const interestOptions=["Nature","Beaches","Adventure","History","Food","Nightlife",]
+
   const dispatch=useDispatch()
   const navigate=useNavigate()
-  const trip=useSelector((state)=>state.storeTripDetails.tripDetails)
 
   const handleChange=(e)=>{
     setTripData((prev)=>({
@@ -19,25 +22,20 @@ const TripForm = ({setOpenModal}) => {
   const handleSubmit = (e) => {
     e.preventDefault();   
     dispatch(addTripDetails(tripData))
-    console.log("after dispatch")
+
     navigate('/results')
   };
 
-  const interestOptions=["Nature","Beaches","Adventure","History","Food","Nightlife",]
 
   const handleInterestChange = (e) => {
   const { value, checked } = e.target;
   if (checked) {
     setTripData((prev) => ({
-      ...prev,
-      interests: [...prev.interests, value],
+      ...prev, interests: [...prev.interests, value],
     }));
   } else {
     setTripData((prev) => ({
-      ...prev,
-      interests: prev.interests.filter(
-        (interest) => interest !== value
-      ),
+      ...prev,  interests: prev.interests.filter( (interest) => interest !== value  ),
     }));
   }
 };

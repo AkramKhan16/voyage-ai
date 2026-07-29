@@ -8,9 +8,9 @@ import axios from "axios";
  export const getDestinationImage=async(destination)=>{
   try{
     const response=await pexelsApi.get('/search',{
-      params:{query:destination,per_page:1},
+      params:{query:destination,per_page:2},
     });
-    return response.data.photos[0];
+    return response.data.photos[1];
   }
   catch(error){
     console.log(error)

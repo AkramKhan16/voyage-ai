@@ -22,6 +22,19 @@ const budgetCalculations = (trip) => {
     }
 
     const selectedStyle=travelCosts[trip.travelStyle];
+    if (!selectedStyle) {
+  return {
+    hotelCost: 0,
+    foodCost: 0,
+    transportCost: 0,
+    activitiesCost: 0,
+    miscellaneousCost: 0,
+    totalBudget: 0,
+    rooms: 0,
+    vehicles: 0,
+    vehicleType: "",
+  };
+}
     const days=Number(trip.days);
     const travellers=Number(trip.travellers)
     const rooms=Math.ceil(travellers/2)
@@ -42,16 +55,17 @@ const budgetCalculations = (trip) => {
       transportRate=2000
      }
       
+     
   const hotelCost= rooms*days*selectedStyle.hotel;
   const foodCost=travellers*days*selectedStyle.food;
   const transportCost=vehicles*transportRate*days;
   const activitiesCost=selectedStyle.activities*travellers*days;
   const miscellaneousCost=selectedStyle.miscellaneous*travellers*days;
 
-  const TotalBudget=hotelCost+foodCost+transportCost+activitiesCost+miscellaneousCost;
+  const totalBudget=hotelCost+foodCost+transportCost+activitiesCost+miscellaneousCost;
 
   return{
-   TotalBudget,hotelCost,foodCost,transportCost,activitiesCost,miscellaneousCost,vehicleType,vehicles,rooms
+   totalBudget,hotelCost,foodCost,transportCost,activitiesCost,miscellaneousCost,vehicleType,vehicles,rooms
 }
 }
 
