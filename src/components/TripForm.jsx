@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTripDetails } from '../redux/slices/tripSlice'
 import { useNavigate } from 'react-router-dom'
+import { createTrip } from '../services/backendApi'
 
 const TripForm = ({setOpenModal}) => {
   const[step,setStep]=useState(1)
@@ -19,11 +20,16 @@ const TripForm = ({setOpenModal}) => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();   
-    dispatch(addTripDetails(tripData))
-
-    navigate('/results')
+    try {
+        const response = await createTrip(tripData);
+        console.log(response.data);
+        dispatch(addTripDetails(tripData));
+        navigate('/results');
+    } catch(error) {
+        console.log(error);
+    }
   };
 
 

@@ -2,8 +2,8 @@ import { GoogleGenAI } from "@google/genai";
 
 const ai=new GoogleGenAI({
   apiKey: import.meta.env.VITE_GEMINI_KEY
+  })
   
-})
 export const generateTrip = async (trip) => {
   try{
     const prompt = ` Create a ${trip.days}-day travel itinerary for ${trip.destination}.  Travelers: ${trip.travellers} Travel Style: ${trip.travelStyle}  Interests: ${trip.interests.join(", ")}

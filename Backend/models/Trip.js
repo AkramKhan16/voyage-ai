@@ -29,7 +29,7 @@ const tripSchema = new mongoose.Schema({
 
     aiTrip: {
         type: Object,
-        required: true
+        required: false
     }
 
 }, {

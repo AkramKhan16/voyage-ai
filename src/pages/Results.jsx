@@ -30,7 +30,7 @@ const Results = () => {
     
      useEffect(() => {
   const fetchTrip = async () => {
-
+        try{
     const sortedInterests = [...trip.interests].sort();
     const cacheKey = `trip-${trip.destination}-${trip.days}-${trip.travelStyle}-${trip.travellers}-${sortedInterests.join("-")}`;
 
@@ -46,9 +46,13 @@ const Results = () => {
     if (data) {
       setAiTrip(data);
       localStorage.setItem(cacheKey, JSON.stringify(data));
-    }
-  };
-
+    };
+  }
+catch(error){
+ console.log("Gemini failed:", error);
+ throw error;
+}
+     }
   if (trip.destination) {
     fetchTrip();
   }
