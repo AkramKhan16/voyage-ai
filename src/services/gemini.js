@@ -72,7 +72,7 @@ const text = response.text
     return JSON.parse(text);
   }
   catch(error){
-    console.log("Gemini error: ",error);
+    toast.error("Gemini is busy. Try again later.");
     return null;
   }
 }

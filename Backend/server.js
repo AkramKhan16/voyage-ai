@@ -3,6 +3,7 @@ const cors=require("cors")
 const dotenv=require("dotenv")
 const connectDB=require("./config/db")
 const tripRoutes = require("./routes/tripRoutes");
+const userRoutes=require('./routes/userRoutes')
 
 dotenv.config()
 connectDB()
@@ -15,6 +16,7 @@ app.use(cors())
 const PORT=5000
 
 app.use('/',tripRoutes);
+app.use('/',userRoutes);
 
 app.listen(PORT,()=>{
   console.log(`Server is running at the ${PORT}`)

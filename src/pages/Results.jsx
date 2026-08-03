@@ -8,31 +8,53 @@ import Restaurants from "../components/Restaurants";
 import TravelTips from "../components/TravelTips";
 import BudgetCard from "../components/BudgetCard";
 import TripSummary from '../components/TripSummary';
+import { useParams } from "react-router-dom";
+import { getTripById } from "../services/backendApi";
 
 const Results = () => {
      const trip=useSelector((state)=>state.storeTripDetails.tripDetails)
      const[image,setImage]=useState(null)
      const [aiTrip, setAiTrip] = useState(null);
+     const [currentTrip, setCurrentTrip] = useState(trip);
+     const { id } = useParams();
 
-      const budget=budgetCalculations(trip)
+      const budget = budgetCalculations(currentTrip);
        
+
+useEffect(() => {
+    const fetchSavedTrip = async () => {
+        try {
+            const response = await getTripById(id);
+            setCurrentTrip(response.data);
+            setAiTrip(response.data.aiTrip);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    if (id) {
+        fetchSavedTrip();
+    }
+}, [id]);
+
 
      useEffect(()=>{
       const fetchImage=async()=>{
-        const data=await getDestinationImage(trip.destination)
+        const data=await getDestinationImage(currentTrip.destination)
         setImage(data)
       }
-      if(trip.destination){
+      if(currentTrip.destination){
         fetchImage()
       }
      
-     },[trip.destination])
+     },[currentTrip.destination])
     
      useEffect(() => {
+      
   const fetchTrip = async () => {
+    if (id) {  return; }
         try{
-    const sortedInterests = [...trip.interests].sort();
-    const cacheKey = `trip-${trip.destination}-${trip.days}-${trip.travelStyle}-${trip.travellers}-${sortedInterests.join("-")}`;
+    const sortedInterests = [...currentTrip.interests].sort();
+    const cacheKey = `trip-${currentTrip.destination}-${currentTrip.days}-${currentTrip.travelStyle}-${currentTrip.travellers}-${sortedInterests.join("-")}`;
 
     const cachedTrip = localStorage.getItem(cacheKey);
   
@@ -41,7 +63,7 @@ const Results = () => {
       return;
     }
 
-    const data = await generateTrip(trip);
+    const data = await generateTrip(currentTrip);
 
     if (data) {
       setAiTrip(data);
@@ -53,21 +75,20 @@ catch(error){
  throw error;
 }
      }
-  if (trip.destination) {
+  if (currentTrip.destination) {
     fetchTrip();
   }
 }, [
-  trip.destination,
-  trip.days,
-  trip.travelStyle,
-  trip.travellers,
-  trip.interests.join("-")
+  currentTrip.destination,
+  currentTrip.days,
+  currentTrip.travelStyle,
+  currentTrip.travellers,
+  currentTrip.interests.join("-")
 ]);
-
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
-        <TripSummary trip={trip} image={image}/>
+        <TripSummary trip={currentTrip} image={image}/>
         <BudgetCard budget={budget} />
         <div className="max-w-6xl mx-auto flex justify-end mb-6">
   <button onClick={() => { localStorage.removeItem("aiTrip");
