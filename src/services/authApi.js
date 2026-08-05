@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://voyage-ai-backend-luxk.onrender.com"
 });
 
 export const registerUser = (userData) => {
