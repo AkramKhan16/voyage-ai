@@ -23,10 +23,14 @@ const TripForm = ({setOpenModal}) => {
   const handleSubmit = async(e) => {
     e.preventDefault();   
     try {
-        const response = await createTrip(tripData);
+      const formattedTrip = { ...tripData,
+        destination: tripData.destination.trim().toLowerCase(),
+       interests: [...tripData.interests].sort()
+};
+        const response = await createTrip(formattedTrip);
         console.log(response.data);
-        dispatch(addTripDetails(tripData));
-        navigate('/results');
+        dispatch(addTripDetails(response.data));
+        navigate(`/results/${response.data._id}`);
     } catch(error) {
         console.log(error);
     }

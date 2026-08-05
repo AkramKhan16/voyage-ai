@@ -9,14 +9,14 @@ const Itinerary = ({ aiTrip }) => {
 
   return (
     <div className="max-w-6xl mx-auto mt-10">
-      <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
+      <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-4 md:p-8">
 
-        <h2 className="text-4xl font-bold text-gray-800 mb-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-800 mb-6 md:mb-8">
           🗺️ AI Travel Itinerary
         </h2>
 
         {/* Day Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 mb-8 md:mb-10">
           {aiTrip.itinerary.map((item, index) => (
             <button
               key={item.day}
@@ -39,16 +39,16 @@ const Itinerary = ({ aiTrip }) => {
         </div>
 
         {/* Selected Day */}
-        <div className="rounded-3xl bg-gradient-to-br from-sky-50 via-white to-indigo-50 border border-blue-100 p-8">
+        <div className="rounded-3xl bg-gradient-to-br from-sky-50 via-white to-indigo-50 border border-blue-100 p-4 md:p-8">
 
           <div className="flex flex-col md:flex-row md:justify-between md:items-center">
 
             <div>
-              <h2 className="text-3xl font-bold text-blue-700">
+              <h2 className="text-2xl md:text-3xl font-bold text-blue-700">
                 {day.title}
               </h2>
 
-              <p className="mt-2 text-lg font-medium text-gray-700">
+              <p className="mt-2 text-base md:text-lg font-medium text-gray-700">
                 📍 {day.place}
               </p>
             </div>
@@ -62,7 +62,7 @@ const Itinerary = ({ aiTrip }) => {
           </div>
 
           {/* Information Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mt-8 md:mt-10">
 
             <div className="bg-white rounded-2xl shadow-md p-5 hover:shadow-xl transition">
               <p className="text-sm text-gray-500">🚗 Distance</p>
@@ -118,7 +118,7 @@ const Itinerary = ({ aiTrip }) => {
           {/* Activities */}
           <div className="mt-10">
 
-            <h3 className="text-2xl font-bold mb-5">
+            <h3 className="text-xl md:text-2xl font-bold mb-5">
               🎯 Activities
             </h3>
 
@@ -132,7 +132,7 @@ const Itinerary = ({ aiTrip }) => {
       {activity.name}
     </h4>
 
-    <div className="grid grid-cols-3 gap-4 mt-3 text-sm">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mt-3 text-sm">
 
       <div>
         🕒 {activity.time}
@@ -167,21 +167,19 @@ const Itinerary = ({ aiTrip }) => {
           </div>
 
           {/* Previous / Next */}
-          <div className="flex justify-between mt-10">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between mt-10">
 
             <button
               onClick={() => setSelectedDay(selectedDay - 1)}
               disabled={selectedDay === 0}
-              className="px-6 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 disabled:opacity-40"
-            >
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gray-200 hover:bg-gray-300 disabled:opacity-40">
               ← Previous
             </button>
 
             <button
               onClick={() => setSelectedDay(selectedDay + 1)}
               disabled={selectedDay === aiTrip.itinerary.length - 1}
-              className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40"
-            >
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40">
               Next →
             </button>
 

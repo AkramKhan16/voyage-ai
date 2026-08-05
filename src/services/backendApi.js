@@ -43,4 +43,8 @@ export const getTripById = (id) => {
     });
 };
 
+export const updateTrip = (id, tripData) => {
+    return API.put(`/trip/${id}`, tripData);
+};
+
 export default API;

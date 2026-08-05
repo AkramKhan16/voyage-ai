@@ -1,12 +1,62 @@
-# React + Vite
+# ✈️ VoyageAI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered travel planner built using the MERN Stack and Google Gemini AI.
 
-Currently, two official plugins are available:
+VoyageAI helps users plan personalized trips by generating day-wise itineraries, estimating travel budgets, recommending restaurants, and providing useful travel tips based on their destination, travel style, duration, and interests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔐 User Authentication (JWT)
+- 👤 Register & Login
+- 🛡 Protected Routes
+- 🌍 AI Trip Planner using Google Gemini
+- 📅 Day-wise Travel Itinerary
+- 💰 Estimated Budget Calculator
+- 🍽 Restaurant Recommendations
+- 💡 Smart Travel Tips
+- 📖 Save Trips to MongoDB
+- 🗂 My Trips Dashboard
+- 👀 View Previous Trips
+- 🗑 Delete Saved Trips
+- ⚡ Fast and Responsive UI
+- 📱 Mobile Friendly Design
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React.js
+- Vite
+- Redux Toolkit
+- React Router DOM
+- Tailwind CSS
+- Axios
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcryptjs
+
+### AI
+
+- Google Gemini API
+
+
+
+## 🚀 Deployment
+
+Frontend: Vercel
+
+Backend: Render
+
+## 👨‍💻 Author
+
+Akram Khan

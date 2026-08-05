@@ -1,4 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
+import toast from "react-hot-toast";
 
 const ai=new GoogleGenAI({
   apiKey: import.meta.env.VITE_GEMINI_KEY
