@@ -12,7 +12,7 @@ const app=express()
 
 app.use(express.json())
 app.use(cors({
-  origin: "https://voyage-ai-alpha-vert.vercel.app/.vercel.app",
+  origin: "https://voyage-ai-alpha-vert.vercel.app",
   credentials: true
 }));
 
