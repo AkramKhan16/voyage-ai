@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 
 const registerUser=async(req,res)=>{
       try{
+        // Destructuring of req.body of frontend data
         const {name,email,password}=req.body;
+        // finding for the existing user
         const existingUser=await User.findOne({email})
         if(existingUser){
           return res.status(400).json({
@@ -26,9 +28,8 @@ const registerUser=async(req,res)=>{
        })
       }
 }
-// akram16@gmail.com  123456
-// _id:6a705246474b7b2aa1326314     
-// Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNzA1MjQ2NDc0YjdiMmFhMTMyNjMxNCIsImlhdCI6MTc4NTc0NjE3NywiZXhwIjoxNzg2MzUwOTc3fQ.PSbujlGJGpyDOWRORiFk6Vro9oE4uSsQHWZYgoZFmAI
+
+
 const loginUser=async(req,res)=>{
   try{
   const{email,password}=req.body;

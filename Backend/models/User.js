@@ -18,6 +18,7 @@ const userSchema=new mongoose.Schema({
     }
   },
     {
+      // this creates createdAt, updatedAt and id
       timestamps:true
     }
 )
